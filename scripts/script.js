@@ -60,12 +60,33 @@
 
 // TRABALHANDO COM ARRAYS
 
-var numeros = [1, 25, 50, 100];
+// Lista de numeros de 1 á 10
+// var source = Rx.Observable.range(1, 10);
 
-var source = Rx.Observable.from(numeros);
+// var numeros = [1, 25, 50, 100];
+// var source = Rx.Observable.from(numeros);
 
-var subscription = source.subscribe(
-    value => console.log(`Contagem ${value}`),
-    err => console.log('DEU RUIM'),
-    () => console.log('Finalizado')
+
+// var subscription = source.subscribe(
+//     value => console.log(`Contagem ${value}`),
+//     err => console.log('DEU RUIM'),
+//     () => console.log('Finalizado')
+// )
+
+// HOT N COLD
+
+// COLD
+
+// var source = Rx.Observable.interval(1000);
+// var subscription = source.subscribe(
+//     value => console.log(`Valor: ${value}`)
+// )
+
+// HOT
+
+var source = Rx.Observable.interval(1000);
+var hot = source.publish();
+
+var subscription = hot.subscribe(
+    value => console.log(`Valor: ${value}`)
 )
